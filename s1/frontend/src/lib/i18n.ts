@@ -1,0 +1,228 @@
+/**
+ * Simple i18n translation system for SmartAgriCare.
+ * Supports: English (en), Hindi (hi), Telugu (te), Kannada (kn), Marathi (mr)
+ */
+
+type Language = 'en' | 'hi' | 'te' | 'kn' | 'mr';
+
+const translations: Record<string, Record<Language, string>> = {
+    // Dashboard
+    'hi_user': { en: 'Hi, {name} 👋', hi: 'नमस्ते, {name} 👋', te: 'హాయ్, {name} 👋', kn: 'ನಮಸ್ತೆ, {name} 👋', mr: 'नमस्कार, {name} 👋' },
+    'welcome_back': { en: 'Welcome back!', hi: 'वापस स्वागत है!', te: 'తిరిగి స్వాగతం!', kn: 'ಮರಳಿ ಸ್ವಾಗತ!', mr: 'परत स्वागत आहे!' },
+    'recent_activity': { en: 'My Recent Activity', hi: 'मेरी हालिया गतिविधि', te: 'నా ఇటీవలి కార్యాచరణ', kn: 'ನನ್ನ ಇತ್ತೀಚಿನ ಚಟುವಟಿಕೆ', mr: 'माझी अलीकडील क्रियाकलाप' },
+    'see_all': { en: 'See All', hi: 'सब देखें', te: 'అన్నీ చూడండి', kn: 'ಎಲ್ಲವನ್ನೂ ನೋಡಿ', mr: 'सर्व पहा' },
+    'humidity': { en: 'Humidity', hi: 'नमी', te: 'తేమ', kn: 'ತೇವಾಂಶ', mr: 'आर्द्रता' },
+    'precipitation': { en: 'Precip.', hi: 'वर्षा', te: 'వర్షపాతం', kn: 'ಮಳೆ', mr: 'पर्जन्य' },
+    'wind': { en: 'Wind', hi: 'हवा', te: 'గాలి', kn: 'ಗಾಳಿ', mr: 'वारा' },
+    'feels_like': { en: 'Feels like', hi: 'अनुभव', te: 'అనుభవం', kn: 'ಅನುಭವ', mr: 'असे वाटते' },
+    'uv_index': { en: 'UV Index', hi: 'UV सूचकांक', te: 'UV సూచిక', kn: 'UV ಸೂಚ್ಯಾಂಕ', mr: 'UV निर्देशांक' },
+    'today': { en: 'Today', hi: 'आज', te: 'ఈరోజు', kn: 'ಇಂದು', mr: 'आज' },
+    'forecast': { en: 'Forecast', hi: 'पूर्वानुमान', te: 'అంచనా', kn: 'ಮುನ್ಸೂಚನೆ', mr: 'अंदाज' },
+    'day_sun': { en: 'Sun', hi: 'रवि', te: 'ఆది', kn: 'ಭಾನು', mr: 'रवि' },
+    'day_mon': { en: 'Mon', hi: 'सोम', te: 'సోమ', kn: 'ಸೋಮ', mr: 'सोम' },
+    'day_tue': { en: 'Tue', hi: 'मंगल', te: 'మంగ', kn: 'ಮಂಗಳ', mr: 'मंगळ' },
+    'day_wed': { en: 'Wed', hi: 'बुध', te: 'బుధ', kn: 'ಬುಧ', mr: 'बुध' },
+    'day_thu': { en: 'Thu', hi: 'गुरु', te: 'గురు', kn: 'ಗುರು', mr: 'गुरु' },
+    'day_fri': { en: 'Fri', hi: 'शुक्र', te: 'శుక్ర', kn: 'ಶುಕ್ರ', mr: 'शुक्र' },
+    'day_sat': { en: 'Sat', hi: 'शनि', te: 'శని', kn: 'ಶನಿ', mr: 'शनि' },
+    'loading_map': { en: 'Loading map...', hi: 'नक्शा लोड हो रहा है...', te: 'మ్యాప్ లోడ్ అవుతోంది...', kn: 'ನಕ್ಷೆ ಲೋಡ್ ಆಗುತ್ತಿದೆ...', mr: 'नकाशा लोड होत आहे...' },
+
+    // Activities
+    'disease_detection': { en: 'Disease Detection', hi: 'रोग पहचान', te: 'వ్యాధి గుర్తింపు', kn: 'ರೋಗ ಗುರುತಿಸುವಿಕೆ', mr: 'रोग शोध' },
+    'crop_recommendation': { en: 'Crop Recommendation', hi: 'फसल सिफारिश', te: 'పంట సిఫార్సు', kn: 'ಬೆಳೆ ಶಿಫಾರಸು', mr: 'पीक शिफारस' },
+    'local_stores': { en: 'Local Stores', hi: 'स्थानीय दुकानें', te: 'స్థానిక దుకాణాలు', kn: 'ಸ್ಥಳೀಯ ಅಂಗಡಿಗಳು', mr: 'स्थानिक दुकाने' },
+    'language': { en: 'Language', hi: 'भाषा', te: 'భాష', kn: 'ಭಾಷೆ', mr: 'भाषा' },
+    'choose_language': { en: 'Choose Language', hi: 'भाषा चुनें', te: 'భాష ఎంచుకోండి', kn: 'ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ', mr: 'भाषा निवडा' },
+    'tap_to_apply': { en: 'Tap to apply instantly', hi: 'तुरंत लागू करने के लिए टैप करें', te: 'వెంటనే అమలు చేయడానికి నొక్కండి', kn: 'ತಕ್ಷಣ ಅನ್ವಯಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ', mr: 'त्वरित लागू करण्यासाठी टॅप करा' },
+
+    // Disease Detection
+    'upload_diagnose': { en: 'Upload or capture a plant image to diagnose', hi: 'निदान के लिए पौधे की तस्वीर अपलोड या कैप्चर करें', te: 'రోగ నిర్ధారణ కోసం మొక్క చిత్రాన్ని అప్‌లోడ్ చేయండి', kn: 'ರೋಗ ನಿದಾನಕ್ಕಾಗಿ ಸಸ್ಯ ಚಿತ್ರವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ ಅಥವಾ ಸೆರೆಹಿಡಿಯಿರಿ', mr: 'निदानासाठी वनस्पतीची प्रतिमा अपलोड किंवा कॅप्चर करा' },
+    'take_photo': { en: 'Take Photo', hi: 'फोटो लें', te: 'ఫోటో తీయండి', kn: 'ಫೋಟೋ ತೆಗೆದುಕೊಳ್ಳಿ', mr: 'छायाचित्र घ्या' },
+    'use_camera': { en: 'Use your camera', hi: 'कैमरा उपयोग करें', te: 'మీ కెమెరా ఉపయోగించండి', kn: 'ನಿಮ್ಮ ಕ್ಯಾಮೆರಾ ಬಳಸಿ', mr: 'तुमचा कॅमेरा वापरा' },
+    'upload_gallery': { en: 'Upload from Gallery', hi: 'गैलरी से अपलोड करें', te: 'గ్యాలరీ నుండి అప్‌లోడ్ చేయండి', kn: 'ಗ್ಯಾಲರಿಯಿಂದ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ', mr: 'गॅलरीमधून अपलोड करा' },
+    'browse_files': { en: 'Browse your files', hi: 'अपनी फाइलें ब्राउज़ करें', te: 'మీ ఫైల్‌లను బ్రౌజ్ చేయండి', kn: 'ನಿಮ್ಮ ಫೈಲ್‌ಗಳನ್ನು ವೀಕ್ಷಿಸಿ', mr: 'तुमच्या फायली ब्राउझ करा' },
+    'analysis_complete': { en: 'Analysis Complete', hi: 'विश्लेषण पूर्ण', te: 'విశ్లేషణ పూర్తయింది', kn: 'ವಿಶ್ಲೇಷಣೆ ಪೂರ್ಣವಾಗಿದೆ', mr: 'विश्लेषण पूर्ण' },
+    'cause_of_disease': { en: 'Cause of Disease', hi: 'रोग का कारण', te: 'వ్యాధి కారణం', kn: 'ರೋಗದ ಕಾರಣ', mr: 'रोगाचे कारण' },
+    'treatment': { en: 'Treatment', hi: 'उपचार', te: 'చికిత్స', kn: 'ಚಿಕಿತ್ಸೆ', mr: 'उपचार' },
+    'medication_timeline': { en: 'Medication Timeline', hi: 'दवा समयरेखा', te: 'మందు సమయపట్టిక', kn: 'ಔಷಧಿ ಕಾಲಾನುಕ್ರಮ', mr: 'औषध टाइमलाइन' },
+    'nearby_stores': { en: 'Nearby Stores', hi: 'नजदीकी दुकानें', te: 'సమీపంలోని దుకాణాలు', kn: 'ಹತ್ತಿರದ ಅಂಗಡಿಗಳು', mr: 'जवळील दुकाने' },
+    'save_report': { en: 'Save Report', hi: 'रिपोर्ट सहेजें', te: 'నివేదిక సేవ్ చేయండి', kn: 'ವರದಿಯನ್ನು ಉಳಿಸಿ', mr: 'अहवाल जतन करा' },
+    'scan_another': { en: 'Scan Another', hi: 'और स्कैन करें', te: 'మరొకటి స్కాన్ చేయండಿ', kn: 'ಮತ್ತೊಂದನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ', mr: 'दुसरे स्कॅन करा' },
+    'report_saved': { en: 'Report saved successfully!', hi: 'रिपोर्ट सफलतापूर्वक सहेजी गई!', te: 'నివేదిక విజయవంతంగా సేవ్ చేయబడింది!', kn: 'ವರದಿ ಯಶಸ್ವಿಯಾಗಿ ಉಳಿಸಲಾಗಿದೆ!', mr: 'अहवाल यशस्वीरित्या जतन करण्यात आला!' },
+    'viral_warning': { en: 'Viral Disease Warning', hi: 'वायरल रोग चेतावनी', te: 'వైరల్ వ్యాధి హెచ్చరిక', kn: 'ವೈರಲ್ ರೋಗ ಎಚ್ಚರಿಕೆ', mr: 'विषाणूजन्य रोगाचा इशारा' },
+    'medication_schedule': { en: 'Medication Schedule', hi: 'दवा अनुसूची', te: 'మందుల షెడ్యూల్', kn: 'ಔಷಧಿ ವೇಳಾಪಟ್ಟಿ', mr: 'औषध वेळापत्रक' },
+    'quantity': { en: 'Qty/Acre', hi: 'मात्रा/एकड़', te: 'పరిమాణం/ఎకరం', kn: 'ಪ್ರಮಾಣ/ಎಕರೆ', mr: 'प्रमाण/एकर' },
+    'water': { en: 'Water', hi: 'पानी', te: 'నీరు', kn: 'ನೀರು', mr: 'पाणी' },
+    'when': { en: 'When', hi: 'कब', te: 'ఎప్పుడు', kn: 'ಯಾವಾಗ', mr: 'केव्हा' },
+    'repeat': { en: 'Repeat', hi: 'दोहराएं', te: 'పునరావృతం', kn: 'ಪುನರಾವರ್ತನೆ', mr: 'पुनरावृत्ती' },
+    'duration': { en: 'Duration', hi: 'अवधि', te: 'వ్యవధి', kn: 'ಅವಧಿ', mr: 'मुदत' },
+    'max_sprays': { en: 'Max sprays', hi: 'अधिकतम छिड़काव', te: 'గరిష్ట పిచికారీలు', kn: 'ಗರಿಷ್ಠ ಚಿಮಿಕುಸುವಿಕೆ', mr: 'जास्तीत जास्त फवारणी' },
+    'healthy_crop': { en: 'Healthy Crop!', hi: 'स्वस्थ फसल!', te: 'ఆరోగ్యకరమైన పంట!', kn: 'ಆರೋಗ್ಯಕರ ಬೆಳೆ!', mr: 'निरोगी पीक!' },
+    'no_disease_detected': { en: 'No disease detected. Your crop is healthy.', hi: 'कोई रोग नहीं पाया गया। आपकी फसल स्वस्थ है।', te: 'వ్యాధి కనుగొనబడలేదు. మీ పంట ఆరోగ్యంగా ఉంది.', kn: 'ಯಾವುದೇ ರೋಗ ಕಂಡುಬಂದಿಲ್ಲ. ನಿಮ್ಮ ಬೆಳೆ ಆರೋಗ್ಯಕರವಾಗಿದೆ.', mr: 'कोणताही रोग आढळला नाही. तुमचे पीक निरोगी आहे.' },
+    'confidence': { en: 'Confidence', hi: 'विश्वास', te: 'విశ్వాసం', kn: 'ವಿಶ್ವಾಸ', mr: 'विश्वास' },
+    'not_recognized': { en: 'Image Not Recognized', hi: 'छवि पहचान नहीं हुई', te: 'చిత్రం గుర్తించబడలేదు', kn: 'ಚಿತ್ರವನ್ನು ಗುರುತಿಸಲಾಗಲಿಲ್ಲ', mr: 'प्रतिमा ओळखली गेली नाही' },
+    'not_plant_image': { en: 'This image does not appear to be a crop leaf. Please upload a clear, close-up photo of the affected leaf.', hi: 'यह छवि फसल की पत्ती नहीं लगती। कृपया प्रभावित पत्ती की स्पष्ट तस्वीर अपलोड करें।', te: 'ఈ చిత్రం పంట ఆకుగా కనిపించడం లేదు. దయచేసి ప్రభావిత ఆకు యొక్క స్పష్టమైన ఫోటో అప్‌లోడ్ చేయండి.', kn: 'ಈ ಚಿತ್ರವು ಬೆಳೆ ಎಲೆಯಂತೆ ಕಾಣಿಸುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು ಪ್ರಭಾವಿತ ಎಲೆಯ ಸ್ಪಷ್ಟ ಹತ್ತಿರದ ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ.', mr: 'ही प्रतिमा पिकाच्या पानासारखी दिसत नाही. कृपया प्रभावित पानाचे स्पष्ट जवळचे छायाचित्र अपलोड करा.' },
+    'deficiencies': { en: 'Nutrient Deficiencies', hi: 'पोषक तत्वों की कमी', te: 'పోషక లోపాలు', kn: 'ಪೋಷಕ ಲೋಪಗಳು', mr: 'पोषक घटकांची कमतरता' },
+    'disorders': { en: 'Plant Disorders', hi: 'पौधों के विकार', te: 'మొక్క రుగ్మతలు', kn: 'ಸಸ್ಯ ವಿಕಾರಗಳು', mr: 'वनस्पती विकार' },
+    'organic_treatment': { en: 'Organic / Natural Treatment', hi: 'जैविक / प्राकृतिक उपचार', te: 'సేంద్రీయ / సహజ చికిత్స', kn: 'ಸಾವಯವ / ನೈಸರ್ಗಿಕ ಚಿಕಿತ್ಸೆ', mr: 'सेंद्रिय / नैसर्गिक उपचार' },
+    'chemical_treatment': { en: 'Chemical Treatment', hi: 'रासायनिक उपचार', te: 'రసాయన చికిత్స', kn: 'ರಾಸಾಯನಿಕ ಚಿಕಿತ್ಸೆ', mr: 'रासायनिक उपचार' },
+
+    // Crop Recommendation
+    'get_ai_suggestions': { en: 'Get AI-based crop suggestions', hi: 'AI आधारित फसल सुझाव प्राप्त करें', te: 'AI ఆధారిత పంట సూచనలు పొందండి', kn: 'AI ಆಧಾರಿತ ಬೆಳೆ ಸೂಚನೆಗಳನ್ನು ಪಡೆಯಿರಿ', mr: 'AI-आधारित पीक सूचना मिळवा' },
+    'soil_type': { en: '🌍 Soil Type', hi: '🌍 मिट्टी का प्रकार', te: '🌍 నేల రకం', kn: '🌍 ಮಣ್ಣಿನ ಪ್ರಕಾರ', mr: '🌍 मातीचा प्रकार' },
+    'growing_season': { en: '📅 Growing Season', hi: '📅 उगाने का मौसम', te: '📅 పంట సీజన్', kn: '📅 ಬೆಳವಣಿಗೆಯ ಕಾಲ', mr: '📅 पीक काळ' },
+    'water_availability': { en: '💧 Water Availability', hi: '💧 पानी की उपलब्धता', te: '💧 నీటి లభ్యత', kn: '💧 ನೀರಿನ ಲಭ್ಯತೆ', mr: '💧 पाण्याची उपलब्धता' },
+    'district': { en: '📍 District', hi: '📍 जिला', te: '📍 జిల్లా', kn: '📍 ಜಿಲ್ಲೆ', mr: '📍 जिल्हा' },
+    'acres_of_land': { en: '📐 Acres of Land', hi: '📐 भूमि (एकड़)', te: '📐 భూమి (ఎకరాలు)', kn: '📐 ಭೂಮಿ (ಎಕರೆಗಳು)', mr: '📐 जमीन (एकर)' },
+    'get_recommendations': { en: 'Get Recommendations', hi: 'सिफारिशें प्राप्त करें', te: 'సిఫార్సులు పొందండి', kn: 'ಶಿಫಾರಸುಗಳನ್ನು ಪಡೆಯಿರಿ', mr: 'शिफारसी मिळवा' },
+    'recommended_crops': { en: 'Recommended Crops', hi: 'अनुशंसित फसलें', te: 'సిఫార్సు చేసిన పంటలు', kn: 'ಶಿಫಾರಸು ಮಾಡಿದ ಬೆಳೆಗಳು', mr: 'शिफारस केलेली पीके' },
+    'modify': { en: 'Modify', hi: 'बदलें', te: 'మార్చండి', kn: 'ಮಾರ್ಪಡಿಸಿ', mr: 'सुधारा' },
+    'select_district': { en: 'Select District', hi: 'जिला चुनें', te: 'జిల్లా ఎంచుకోండి', kn: 'ಜಿಲ್ಲೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ', mr: 'जिल्हा निवडा' },
+
+    // Crop Rec — Soil types
+    'soil_red': { en: 'Red Soil', hi: 'लाल मिट्टी', te: 'ఎర్ర నేల', kn: 'ಕೆಂಪು ಮಣ್ಣು', mr: 'लाल माती' },
+    'soil_red_desc': { en: 'Iron-rich', hi: 'लौह-समृद्ध', te: 'ఇనుము అధికం', kn: 'ಕಬ್ಬಿಣದಲ್ಲಿ ಸಮೃದ್ಧ', mr: 'लोह-समृद्ध' },
+    'soil_black_cotton': { en: 'Black Cotton', hi: 'काली कपास', te: 'నల్ల రేగడి', kn: 'ಕಪ್ಪು ಹತ್ತಿ ಮಣ್ಣು', mr: 'काळी कापूस' },
+    'soil_black_cotton_desc': { en: 'Moisture retentive', hi: 'नमी बनाए रखने वाली', te: 'తేమ నిలుపుకునే', kn: 'ತೇವಾಂಶವನ್ನು ಹಿಡಿದಿಟ್ಟುಕೊಳ್ಳುವ', mr: 'आर्द्रता धरून ठेवणारी' },
+    'soil_alluvial': { en: 'Alluvial', hi: 'जलोढ़', te: 'ఒండ్రు నేల', kn: 'ನದಿ ಕರಡು ಮಣ್ಣು', mr: 'गाळीची माती' },
+    'soil_alluvial_desc': { en: 'River delta', hi: 'नदी डेल्टा', te: 'నది డెల్టా', kn: 'ನದಿ ಡೆಲ್ಟಾ', mr: 'नदी डेल्टा' },
+    'soil_laterite': { en: 'Laterite', hi: 'लैटेराइट', te: 'లాటరైట్', kn: 'ಲ್ಯಾಟರೈಟ್', mr: 'लेटराइट' },
+    'soil_laterite_desc': { en: 'Leached, acidic', hi: 'अम्लीय', te: 'ఆమ్ల, క్షీణించిన', kn: 'ಸ್ರಾವಿಸಿದ, ಆಮ್ಲೀಯ', mr: 'स्रावित, आम्ली' },
+    'soil_sandy': { en: 'Sandy', hi: 'रेतीली', te: 'ఇసుక నేల', kn: 'ಮರಳು ಮಣ್ಣು', mr: 'वालुकामय' },
+    'soil_sandy_desc': { en: 'Light, low nutrients', hi: 'हल्की, कम पोषक', te: 'తేలిక, తక్కువ పోషకాలు', kn: 'ಹಗುರ, ಕಡಿಮೆ ಪೋಷಕಗಳು', mr: 'हलकी, कमी पोषक' },
+    'soil_coastal_saline': { en: 'Coastal Saline', hi: 'तटीय लवणीय', te: 'తీర లవణ', kn: 'ಕರಾವಳಿ ಲವಣ', mr: 'किनारी लवणयुक्त' },
+    'soil_coastal_saline_desc': { en: 'Salt-affected', hi: 'लवण प्रभावित', te: 'ఉప్పు ప్రభావిత', kn: 'ಉಪ್ಪು ಪ್ರಭಾವಿತ', mr: 'मीठ-प्रभावित' },
+    'soil_clay': { en: 'Clay', hi: 'चिकनी मिट्टी', te: 'బంక మట్టి', kn: 'ಚಿಕ್ಕು ಮಣ್ಣು', mr: 'चिखली माती' },
+    'soil_clay_desc': { en: 'Heavy, water-logging', hi: 'भारी, जल भराव', te: 'భారీ, నీరు నిల్వ', kn: 'ಭಾರी, ನೀರು ತುಂಬಿರುವ', mr: 'भारी, पाणी साचणे' },
+
+    // Crop Rec — Seasons
+    'season_kharif': { en: 'Kharif', hi: 'खरीफ', te: 'ఖరీఫ్', kn: 'ಖರೀಫ್', mr: 'खरीप' },
+    'season_kharif_desc': { en: 'Jun–Oct (Summer)', hi: 'जून–अक्टू (ग्रीष्म)', te: 'జూన్–అక్టో (వేసవి)', kn: 'ಜೂನ್–ಅಕ್ಟೋಬರ್ (ಮುಖ್ಯ ಮಳೆ)', mr: 'जून–ऑक्टोबर (उन्हाळा)' },
+    'season_rabi': { en: 'Rabi', hi: 'रबी', te: 'రబీ', kn: 'ರಬ್ಬಿ', mr: 'रबी' },
+    'season_rabi_desc': { en: 'Oct–Mar (Winter)', hi: 'अक्टू–मार्च (शीत)', te: 'అక్టో–మార్చి (శీతాకాలం)', kn: 'ಅಕ್ಟೋಬರ್–ಮಾರ್ಚ್ (ಚಳಿಗಾಲ)', mr: 'ऑक्टोबर–मार्च (हिवाळा)' },
+    'season_zaid': { en: 'Zaid', hi: 'जायद', te: 'జాయిద్', kn: 'ಜೈದ್', mr: 'झायद' },
+    'season_zaid_desc': { en: 'Feb–Jun (Summer)', hi: 'फर–जून (ग्रीष्म)', te: 'ఫిబ్ర–జూన్ (వేసవి)', kn: 'ಫೆಬ್ರವರಿ–ಜೂನ್ (ಬಿಸಿಲು)', mr: 'फेब्रुवारी–जून (उन्हाळा)' },
+
+    // Crop Rec — Water levels
+    'water_low': { en: 'Low', hi: 'कम', te: 'తక్కువ', kn: 'ಕಡಿಮೆ', mr: 'कमी' },
+    'water_moderate': { en: 'Moderate', hi: 'मध्यम', te: 'మధ్యస్థం', kn: 'ಮಧ್ಯಮ', mr: 'मध्यम' },
+    'water_high': { en: 'High', hi: 'अधिक', te: 'ఎక్కువ', kn: 'ಹೆಚ್ಚು', mr: 'जास्त' },
+
+    // Crop detail labels
+    'sowing_window': { en: 'Sowing Window', hi: 'बुवाई का समय', te: 'విత్తడం సమయం', kn: 'ಬಿತ್ತು ಸಮಯಾವಕಾಶ', mr: 'पेरणीची कालावधी' },
+    'harvest': { en: 'Harvest', hi: 'फसल कटाई', te: 'పంట కోత', kn: 'ಕೊಯಿಲು', mr: 'कापणी' },
+    'growing_period': { en: 'Growing Period', hi: 'उगने की अवधि', te: 'పెరుగుదల కాలం', kn: 'ಬೆಳವಣಿಗೆಯ ಅವಧಿ', mr: 'वाढीची कालावधी' },
+    'water_requirement': { en: 'Water Requirement', hi: 'पानी की आवश्यकता', te: 'నీటి అవసరం', kn: 'ನೀರಿನ ಅಗತ್ಯ', mr: 'पाण्याची गरज' },
+    'expected_yield': { en: 'Expected Yield', hi: 'अपेक्षित उपज', te: 'ఆశించిన దిగుబడి', kn: 'ನಿರೀಕ್ಷಿತ ಇಳುವರಿ', mr: 'अपेक्षित उत्पादन' },
+    'fertilizer': { en: 'Fertilizer', hi: 'उर्वरक', te: 'ఎరువు', kn: 'ಗೊಬ್ಬರ', mr: 'खते' },
+    'best_districts': { en: 'Best Districts', hi: 'सर्वश्रेष्ठ जिले', te: 'ఉత్తమ జిల్లాలు', kn: 'ಉತ್ತಮ ಜಿಲ್ಲೆಗಳು', mr: 'सर्वोत्तम जिल्हे' },
+    'close': { en: 'Close', hi: 'बंद करें', te: 'మూసివేయండి', kn: 'ಮುಚ್ಚಿ', mr: 'बंद करा' },
+    'match': { en: 'match', hi: 'मैच', te: 'సరిపోలిక', kn: 'ಹೊಂದಾಣಿಕೆ', mr: 'जुळणी' },
+    'no_crops_found': { en: 'No crops found for this combination. Try different filters.', hi: 'इस संयोजन के लिए कोई फसल नहीं मिली। अलग फिल्टर आज़माएं।', te: 'ఈ కలయికకు పంటలు దొరకలేదు. వేరే ఫిల్టర్‌లు ప్రయత్నించండి.', kn: 'ಈ ಸಂಯೋಜನೆಗೆ ಯಾವುದೇ ಬೆಳೆಗಳು ಕಂಡುಬಂದಿಲ್ಲ. ವಿಭಿನ್ನ ಫಿಲ್ಟರ್‌ಗಳನ್ನು ಪ್ರಯತ್ನಿಸಿ.', mr: 'या संयोजनासाठी कोणतीही पीके सापडली नाहीत. वेगळे फिल्टर वापरून पहा.' },
+    'acres': { en: 'acres', hi: 'एकड़', te: 'ఎకరాలు', kn: 'ಎಕರೆ', mr: 'एकर' },
+    'ap_districts': { en: 'Andhra Pradesh Districts', hi: 'आंध्र प्रदेश जिले', te: 'ఆంధ్ర ప్రదేశ్ జిల్లాలు', kn: 'ಆಂಧ್ರ ಪ್ರದೇಶ ಜಿಲ್ಲೆಗಳು', mr: 'आंध्र प्रदेश जिल्हे' },
+    'water_label': { en: 'water', hi: 'पानी', te: 'నీరు', kn: 'ನೀರು', mr: 'पाणी' },
+    'recommended_varieties': { en: 'Recommended Varieties', hi: 'अनुशंसित किस्में', te: 'సిఫార్సు చేసిన రకాలు', kn: 'ಶಿಫಾರಸು ಮಾಡಿದ ಜಾತಿಗಳು', mr: 'शिफारस केलेल्या जाती' },
+    'intercropping': { en: 'Intercropping', hi: 'अंतरफसल', te: 'అంతర పంట', kn: 'ಅಂತಃ ಬೆಳೆ', mr: 'मिश्र पीक' },
+    'more': { en: 'more', hi: 'और', te: 'మరిన్ని', kn: 'ಹೆಚ್ಚು', mr: 'अधिक' },
+
+    // Stores
+    'find_stores': { en: 'Find agricultural stores near you', hi: 'अपने पास कृषि दुकानें खोजें', te: 'మీ సమీపంలో వ్యవసాయ దుకాణాలు కనుగొనండి', kn: 'ನಿಮ್ಮ ಹತ್ತಿರದ ಕೃಷಿ ಅಂಗಡಿಗಳನ್ನು ಕಂಡುಹಿಡಿಯಿರಿ', mr: 'तुमच्या जवळच्या कृषी दुकाने शोधा' },
+    'search_stores': { en: 'Search stores...', hi: 'दुकानें खोजें...', te: 'దుకాణాలు వెతకండి...', kn: 'ಅಂಗಡಿಗಳನ್ನು ಹುಡುಕಿ...', mr: 'दुकाने शोधा...' },
+    'navigate': { en: 'Navigate', hi: 'नेविगेट करें', te: 'నావిగేట్ చేయండి', kn: 'ನ್ಯಾವಿಗೇಟ್ ಮಾಡಿ', mr: 'नेव्हिगेट करा' },
+    'show_map': { en: 'Show Map', hi: 'नक्शा दिखाएं', te: 'మ్యాప్ చూపించు', kn: 'ನಕ್ಷೆ ತೋರಿಸಿ', mr: 'नकाशा दाखवा' },
+    'hide_map': { en: 'Hide Map', hi: 'नक्शा छुपाएं', te: 'మ్యాప్ దాచు', kn: 'ನಕ್ಷೆ ಮರೆಯಿರಿ', mr: 'नकाशा लपवा' },
+    'open': { en: 'Open', hi: 'खुला', te: 'తెరిచి ఉంది', kn: 'ತೆರೆದಿದೆ', mr: 'उघडा' },
+    'closed': { en: 'Closed', hi: 'बंद', te: 'మూసి ఉంది', kn: 'ಮುಚ್ಚಿರಿದೆ', mr: 'बंद' },
+    'no_stores_found': { en: 'No stores found nearby. Try increasing the search radius.', hi: 'पास में कोई दुकान नहीं मिली। खोज त्रिज्या बढ़ाने का प्रयास करें।', te: 'సమీపంలో దుకాణాలు కనుగొనబడలేదు. శోధన పరిధిని పెంచడానికి ప్రయత్నించండి.', kn: 'ಹತ್ತಿರದಲ್ಲಿ ಯಾವುದೇ ಅಂಗಡಿಗಳು ಕಂಡುಬಂದಿಲ್ಲ. ಹುಡುಕಾಟ ತ್ರಿಜ್ಯವನ್ನು ಹೆಚ್ಚಿಸಲು ಪ್ರಯತ್ನಿಸಿ.', mr: 'जवळ कोणतीही दुकाने सापडली नाहीत. शोध त्रिज्या वाढवण्याचा प्रयत्न करा.' },
+    'no_stores_subtitle': { en: 'Try a different search term or check back later', hi: 'कोई अन्य खोज शब्द आज़माएं या बाद में वापस जांचें', te: 'వేరే శోధన పదం ప్రయత్నించండి లేదా తర్వాత తనిఖీ చేయండి', kn: 'ಬೇರೆ ಹುಡುಕಾಟ ಪದವನ್ನು ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ನಂತರ ಪರಿಶೀಲಿಸಿ', mr: 'वेगळा शोध शब्द वापरा किंवा नंतर पुन्हा पहा' },
+    'loading_stores': { en: 'Finding stores near you...', hi: 'आपके पास दुकानें खोज रहे हैं...', te: 'మీ సమీపంలో దుకాణాలు వెతుకుతోంది...', kn: 'ನಿಮ್ಮ ಹತ್ತಿರದ ಅಂಗಡಿಗಳನ್ನು ಹುಡುಕುತ್ತಿದೆ...', mr: 'तुमच्या जवळच्या दुकानांचा शोध घेत आहे...' },
+    'stores_fetch_error': { en: 'Could not load stores. Please try again.', hi: 'दुकानें लोड नहीं हो सकीं। कृपया पुनः प्रयास करें।', te: 'దుకాణాలు లోడ్ కాలేదు. దయచేసి మళ్ళీ ప్రయత్నించండి.', kn: 'ಅಂಗಡಿಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.', mr: 'दुकाने लोड करू शकलो नाही. कृपया पुन्हा प्रयत्न करा.' },
+    'map_area_note': { en: 'Your area. Use Navigate buttons below for directions.', hi: 'आपका क्षेत्र। दिशाओं के लिए नीचे नेविगेट बटन उपयोग करें।', te: 'మీ ప్రాంతం. దిశల కోసం క్రింద నావిగేట్ బటన్ వాడండి.', kn: 'ನಿಮ್ಮ ಪ್ರದೇಶ. ದಿಕ್ಕುಗಳಿಗಾಗಿ ಕೆಳಗಿನ ನ್ಯಾವಿಗೇಟ್ ಬಟನ್ ಬಳಸಿ.', mr: 'तुमचे क्षेत्र. दिशा मिळविण्यासाठी खालचे नेव्हिगेट बटण वापरा.' },
+    'grant_location': { en: 'Grant location access to find stores', hi: 'दुकानें खोजने के लिए स्थान अनुमति दें', te: 'దుకాణాలు కనుగొనడానికి లొకేషన్ అనుమతి ఇవ్వండి', kn: 'ಅಂಗಡಿಗಳನ್ನು ಕಂಡುಹಿಡಿಯಲು ಸ್ಥಳ ಪ್ರವೇಶಾವಕಾಶ ನೀಡಿ', mr: 'दुकाने शोधण्यासाठी स्थान प्रवेश परवानगी द्या' },
+
+    // Voice Assistant
+    'voice_assistant': { en: 'Voice Assistant', hi: 'वॉइस असिस्टेंट', te: 'వాయిస్ అసిస్టెంట్', kn: 'ವಾಯ್ಸ್ ಅಸಿಸ್ಟೆಂಟ್', mr: 'व्हॉइस असिस्टंट' },
+    'ask_anything': { en: 'Ask me anything about farming', hi: 'खेती के बारे में कुछ भी पूछें', te: 'వ్యవసాయం గురించి ఏదైనా అడగండి', kn: 'ಕೃಷಿ ಬಗ್ಗೆ ಏನಾದರೂ ಕೇಳಿ', mr: 'शेतीबद्दल काहीही विचारा' },
+    'tap_to_speak': { en: 'Tap to speak', hi: 'बोलने के लिए टैप करें', te: 'మాట్లాడటానికి నొక్కండి', kn: 'ಮಾತನಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ', mr: 'बोलण्यासाठी टॅप करा' },
+    'listening': { en: 'Listening… tap to stop', hi: 'सुन रहे हैं… रोकने के लिए टैप करें', te: 'వింటోంది… ఆపడానికి నొక్కండಿ', kn: 'ಕೇಳುತ್ತಿದೆ… ನಿಲ್ಲಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ', mr: 'ऐकत आहे… थांबवण्यासाठी टॅप करा' },
+    'type_message': { en: 'Type your message...', hi: 'अपना संदेश लिखें...', te: 'మీ సందేశం టైప్ చేయండి...', kn: 'ನಿಮ್ಮ ಸಂದೇಶವನ್ನು ಟೈಪ್ ಮಾಡಿ...', mr: 'तुमचा संदेश टाइप करा...' },
+    'listen': { en: 'Listen', hi: 'सुनें', te: 'వినండి', kn: 'ಕೇಳಿ', mr: 'ऐका' },
+
+    // Auth
+    'back_to_login': { en: 'Back to Login', hi: 'लॉगिन पर वापस जाएं', te: 'లాగిన్‌కు తిరిగి', kn: 'ಲಾಗಿನ್‌ಗೆ ಹಿಂತಿರುಗಿ', mr: 'लॉगिनवर परत जा' },
+    'welcome_smartagricare': { en: 'Welcome to SmartAgriCare', hi: 'स्मार्ट एग्रीकेयर में आपका स्वागत है', te: 'SmartAgriCare కి స్వాగతం', kn: 'SmartAgriCare ಗೆ ಸ್ವಾಗತ', mr: 'SmartAgriCare मध्ये तुमचे स्वागत आहे' },
+    'join_farmers': { en: 'Join 10,000+ farmers using SmartAgriCare', hi: '10,000+ किसान स्मार्ट एग्रीकेयर उपयोग कर रहे हैं', te: '10,000+ రైతులు SmartAgriCare ఉపయోగిస్తున్నారు', kn: '10,000+ ರೈತರು SmartAgriCare ಬಳಸುತ್ತಿದ್ದಾರೆ', mr: '10,000+ शेतकरी SmartAgriCare वापरत आहेत' },
+    'login': { en: 'Login', hi: 'लॉगिन', te: 'లాగిన్', kn: 'ಲಾಗಿನ್', mr: 'लॉगिन' },
+    'sign_up': { en: 'Sign Up', hi: 'साइन अप', te: 'సైన్ అప్', kn: 'ಸೈನ್ ಅಪ್', mr: 'साइन अप' },
+    'forgot_password': { en: 'Forgot Password?', hi: 'पासवर्ड भूल गए?', te: 'పాస్‌వర్డ్ మర్చిపోయారా?', kn: 'ಪಾಸ್‌ವರ್ಡ್ ಮರೆತಿದ್ದೀರಾ?', mr: 'पासवर्ड विसरलात?' },
+    'dont_have_account': { en: "Don't have an account?", hi: 'अकाउंट नहीं है?', te: 'ఖాతా లేదా?', kn: 'ಖಾತೆ ಇಲ್ಲವೇ?', mr: 'खाते नाहीये?' },
+    'already_registered': { en: 'Already registered?', hi: 'पहले से पंजीकृत?', te: 'ఇప్పటికే నమోదు చేసుకున్నారా?', kn: 'ನಿಮಿತ್ತೇ ನೋಂದಾಯಿಸಿದ್ದೀರಾ?', mr: 'आधीच नोंदणी झाली आहे?' },
+    'create_account': { en: 'Create Account', hi: 'अकाउंट बनाएं', te: 'ఖాతా సృష్టించండి', kn: 'ಖಾತೆಯನ್ನು ರಚಿಸಿ', mr: 'खाते तयार करा' },
+    'reset_password': { en: 'Reset Password', hi: 'पासवर्ड रीसेट करें', te: 'పాస్‌వర్డ్ రీసెట్ చేయండి', kn: 'ಪಾಸ್‌ವರ್ಡ್ ಮರುಹೊಂದಿಸಿ', mr: 'पासवर्ड रीसेट करा' },
+    'enter_email': { en: 'Enter your registered email', hi: 'अपना पंजीकृत ईमेल दर्ज करें', te: 'మీ నమోదిత ఇమెయిల్ నమోదు చేయండి', kn: 'ನಿಮ್ಮ ನೋಂದಾಯಿತ ಇಮೇಲ್ ನಮೂದಿಸಿ', mr: 'तुमचे नोंदणीकृत ईमेल टाका' },
+    'send_otp': { en: 'Send Reset Code', hi: 'रीसेट कोड भेजें', te: 'రీసెట్ కోడ్ పంపండి', kn: 'ರಿಸೆಟ್ ಕೋಡ್ ಕಳುಹಿಸಿ', mr: 'रीसेट कोड पाठवा' },
+    'enter_otp': { en: 'Enter the 6-digit code sent to your email', hi: '6 अंकों का कोड दर्ज करें जो आपके ईमेल पर भेजा गया है', te: 'మీ ఇమెయిల్‌కు పంపిన 6-అంకెల కోడ్‌ని నమోదు చేయండి', kn: 'ನಿಮ್ಮ ಇಮೇಲ್ ಗೆ ಕಳುಹಿಸಲಾದ 6-ಅಂಕಗಳ ಕೋಡ್ ನಮೂದಿಸಿ', mr: 'तुमच्या ईमेलवर पाठवलेला 6-अंकी कोड टाका' },
+    'new_password': { en: 'New Password', hi: 'नया पासवर्ड', te: 'కొత్త పాస్‌వర్డ్', kn: 'ಹೊಸ ಪಾಸ್‌ವರ್ಡ್', mr: 'नवीन पासवर्ड' },
+    'password_reset_success': { en: 'Password reset successful! You can now login.', hi: 'पासवर्ड रीसेट सफल! अब आप लॉगिन कर सकते हैं।', te: 'పాస్‌వర్డ్ రీసెట్ విజయవంతం! ఇప్పుడు మీరు లాగిన్ చేయవచ్చు.', kn: 'ಪಾಸ್‌ವರ್ಡ್ ರಿಸೆಟ್ ಯಶಸ್ವಿ! ಈಗ ನೀವು ಲಾಗಿನ್ ಮಾಡಬಹುದು.', mr: 'पासवर्ड रीसेट यशस्वी! आता तुम्ही लॉगिन करू शकता.' },
+
+    // Navigation (BottomNav)
+    'nav_home': { en: 'Home', hi: 'होम', te: 'హోమ్', kn: 'ಮುಖಪುಟ', mr: 'मुख्यपृष्ठ' },
+    'nav_crop_rec': { en: 'Crop Rec.', hi: 'फसल सिफ़ा.', te: 'పంట సిఫా.', kn: 'ಬೆಳೆ ಶಿಫಾ.', mr: 'पीक शिफा.' },
+    'nav_scan': { en: 'Scan', hi: 'स्कैन', te: 'స్కాన్', kn: 'ಸ್ಕ್ಯಾನ್', mr: 'स्कॅन' },
+    'nav_profile': { en: 'Profile', hi: 'प्रोफ़ाइल', te: 'ప్రొఫైల్', kn: 'ಪ್ರೊಫೈಲ್', mr: 'प्रोफाईल' },
+    'nav_find_stores': { en: 'Find Stores', hi: 'दुकानें खोजें', te: 'దుకాణాలు', kn: 'ಅಂಗಡಿಗಳು', mr: 'दुकाने शोधा' },
+    'nav_voice': { en: 'Voice Assistant', hi: 'वॉइस असिस्टेंट', te: 'వాయిస్ అసిస్టెంట్', kn: 'ವಾಯ್ಸ್ ಅಸಿಸ್ಟೆಂಟ್', mr: 'व्हॉइस असिस्टंट' },
+
+    // Profile
+    'farmer': { en: 'Farmer', hi: 'किसान', te: 'రైతు', kn: 'ರೈತ', mr: 'शेतकरी' },
+    'profile': { en: 'Profile', hi: 'प्रोफ़ाइल', te: 'ప్రొఫైల్', kn: 'ಪ್ರೊಫೈಲ್', mr: 'प्रोफाईल' },
+    'account_details': { en: 'Account Details', hi: 'खाता विवरण', te: 'ఖాతా వివరాలు', kn: 'ಖಾತೆ ವಿವರಗಳು', mr: 'खाते तपशील' },
+    'edit': { en: 'Edit', hi: 'संपादित करें', te: 'సవరించండి', kn: 'ಸಂಪಾದಿಸಿ', mr: 'संपादन करा' },
+    'cancel': { en: 'Cancel', hi: 'रद्द करें', te: 'రద్దు చేయండి', kn: 'ರದ್ದು ಮಾಡಿ', mr: 'रद्द करा' },
+    'save': { en: 'Save', hi: 'सहेजें', te: 'సేవ్ చేయండಿ', kn: 'ಉಳಿಸಿ', mr: 'जतन करा' },
+    'saving': { en: 'Saving...', hi: 'सहेज रहे हैं...', te: 'సేవ్ చేస్తోంది...', kn: 'ಉಳಿಸುತ್ತಿದೆ...', mr: 'जतन करत आहे...' },
+    'logout': { en: 'Logout', hi: 'लॉग आउट', te: 'లాగ్ అవుట్', kn: 'ಲಾಗ್ ಔಟ್', mr: 'लॉग आउट' },
+    'name': { en: 'Name', hi: 'नाम', te: 'పేరు', kn: 'ಹೆಸರು', mr: 'नाव' },
+    'email': { en: 'Email', hi: 'ईमेल', te: 'ఇమెయిల్', kn: 'ಇಮೇಲ್', mr: 'ईमेल' },
+    'phone': { en: 'Phone', hi: 'फ़ोन', te: 'ఫోన్', kn: 'ಫೋನ್', mr: 'फोन' },
+    'location': { en: 'Location', hi: 'स्थान', te: 'స్థానం', kn: 'ಸ್ಥಳ', mr: 'स्थान' },
+
+    // Crop & Fertilizer Collective Intelligence
+    'crop_fertilizer_title': { en: 'Crop & Fertilizer Intelligence', hi: 'फसल और उर्वरक बुद्धिमत्ता', te: 'పంట & ఎరువుల మేధస్సు', kn: 'ಬೆಳೆ & ಗೊಬ್ಬರ ಬುದ್ಧಿಮತ್ತೆ', mr: 'पीक आणि खते बुद्धिमत्ता' },
+    'collective_intelligence': { en: 'AI Collective Intelligence', hi: 'एआई सामूहिक बुद्धिमत्ता', te: 'AI సామూహిక మేధస్సు', kn: 'AI ಸಾಮೂಹಿಕ ಬುದ್ಧಿಮತ್ತೆ', mr: 'AI सामूहिक बुद्धिमत्ता' },
+    'soil_climate_input': { en: 'Soil & Climate Profile', hi: 'मिट्टी और जलवायु प्रोफ़ाइल', te: 'నేల & వాతావరణ ప్రొఫైల్', kn: 'ಮಣ್ಣು & ಹವಾಮಾನ ಪ್ರೊಫೈಲ್', mr: 'माती आणि हवामान प्रोफाइल' },
+    'enter_once_desc': { en: 'Enter your soil and climate data once. The Crop and Fertilizer AI agents collaborate to generate a tailored plan.', hi: 'अपनी मिट्टी और जलवायु डेटा केवल एक बार दर्ज करें। फसल और उर्वरक एआई एजेंट मिलकर एक योजना बनाते हैं।', te: 'మీ నేల మరియు వాతావరణ సమాచారాన్ని ఒకేసారి నమోదు చేయండి. పంట మరియు ఎరువుల AI ఏజెంట్లు సమగ్ర సిఫార్సును అందిస్తాయి.', kn: 'ನಿಮ್ಮ ಮಣ್ಣು ಮತ್ತು ಹವಾಮಾನ ಡೇಟಾವನ್ನು ಒಮ್ಮೆ ನಮೂದಿಸಿ. ಬೆಳೆ ಮತ್ತು ಗೊಬ್ಬರ AI ಏಜೆಂಟ್‌ಗಳು ಸಹಕರಿಸಿ ಕಸ್ಟಮ್ ಪ್ಲಾನ್ ರಚಿಸುತ್ತವೆ.', mr: 'तुमची माती आणि हवामान डेटा एकदाच टाका. पीक आणि खते AI एजंट मिळून सानुकूल योजना तयार करतात.' },
+    'nitrogen': { en: 'Nitrogen (N)', hi: 'नाइट्रोजन (N)', te: 'నత్రజని (N)', kn: 'ನೈಟ್ರೋಜನ್ (N)', mr: 'नायट्रोजन (N)' },
+    'phosphorus': { en: 'Phosphorus (P)', hi: 'फास्फोरस (P)', te: 'భాస్వరం (P)', kn: 'ಫಾಸ್ಫರಸ್ (P)', mr: 'फॉस्फरस (P)' },
+    'potassium': { en: 'Potassium (K)', hi: 'पोटेशियम (K)', te: 'పొటాష్ (K)', kn: 'ಪೊಟ್ಯಾಸಿಯಮ್ (K)', mr: 'पोटॅशियम (K)' },
+    'soil_ph': { en: 'Soil pH', hi: 'मिट्टी का pH', te: 'నేల pH', kn: 'ಮಣ್ಣಿನ pH', mr: 'मातीचा pH' },
+    'rainfall': { en: 'Rainfall', hi: 'वर्षा (Rainfall)', te: 'వర్షపాతం', kn: 'ಮಳಾಪಾತ', mr: 'पर्जन्य' },
+    'recommended_crop': { en: 'Recommended Crop', hi: 'अनुशंसित फसल', te: 'సిఫార్సు చేయబడిన పంట', kn: 'ಶಿಫಾರಸು ಮಾಡಿದ ಬೆಳೆ', mr: 'शिफारस केलेले पीक' },
+    'confidence_score': { en: 'Confidence Score', hi: 'सटीकता स्कोर', te: 'విశ్వసనీయత స్కోరు', kn: 'ವಿಶ್ವಾಸಯೋಗ್ಯತೆ ಸ್ಕೋರ್', mr: 'विश्वास स्कोअर' },
+    'current_npk': { en: 'Current Soil NPK', hi: 'वर्तमान मिट्टी NPK', te: 'ప్రస్తుత నేల NPK', kn: 'ಪ್ರಸ್ತುತ ಮಣ್ಣಿನ NPK', mr: 'सध्याच्या मातीतील NPK' },
+    'required_nutrients': { en: 'Required Nutrients', hi: 'आवश्यक पोषक तत्व', te: 'అవసరమైన పోషకాలు', kn: 'ಅಗತ್ಯ ಪೋಷಕಗಳು', mr: 'आवश्यक पोषक घटक' },
+    'nutrient_gaps': { en: 'Nutrient Balance & Deficits', hi: 'पोषक तत्व संतुलन और कमियां', te: 'పోషక సమతుల్యత మరియు లోపాలు', kn: 'ಪೋಷಕ ಸಮತೋಲನ ಮತ್ತು ಕೊರತೆಗಳು', mr: 'पोषक समतोल आणि कमतरता' },
+    'recommended_fertilizer': { en: 'Recommended Fertilizer Type', hi: 'अनुशंसित उर्वरक प्रकार', te: 'సిఫార్సు చేయబడిన ఎరువుల రకం', kn: 'ಶಿಫಾರಸು ಮಾಡಿದ ಗೊಬ್ಬರ ಪ್ರಕಾರ', mr: 'शिफारस केलेल्या खतांचा प्रकार' },
+    'recommended_dosage': { en: 'Recommended Dosage', hi: 'अनुशंसित खुराक', te: 'సిఫార్సు చేసిన మోతాదు', kn: 'ಶಿಫಾರಸು ಮಾಡಿದ ಮಾತ್ರೆ', mr: 'शिफारस केलेला डोस' },
+    'fertilizer_reason': { en: 'Reason for Fertilizer Plan', hi: 'उर्वरक सिफारिश का कारण', te: 'ఎరువుల సిఫార్సు కారణం', kn: 'ಗೊಬ್ಬರ ಪ್ಲಾನ್ ಕಾರಣ', mr: 'खते योजनेचे कारण' },
+    'application_schedule': { en: 'Staged Application Schedule', hi: 'चरणबद्ध अनुप्रयोग अनुसूची', te: 'దశలవారీ వినియోగ సమయపట్టిక', kn: 'ಹಂತವಾದ ಅನ್ವಯ ವೇಳಾಪಟ್ಟಿ', mr: 'टप्प्यांनी लावण्याचे वेळापत्रक' },
+    'analyze_now': { en: 'Generate Intelligence Report', hi: 'बुद्धिमत्ता रिपोर्ट बनाएं', te: 'మేధో నివేదికను రూపొందించండి', kn: 'ಬುದ್ಧಿಮತ್ತೆ ವರದಿ ರಚಿಸಿ', mr: 'बुद्धिमत्ता अहवाल तयार करा' },
+    'auto_fill_weather': { en: 'Auto-fill from Local Weather', hi: 'स्थानीय मौसम से भरें', te: 'స్థానిక వాతావరణం నుండి నింపండి', kn: 'ಸ್ಥಳೀಯ ಹವಾಮಾನದಿಂದ ಸ್ವಯಂ ತುಂಬಿಸಿ', mr: 'स्थानिक हवामानावरून स्वयंभर' },
+    'soil_health_score': { en: 'Soil Health Index', hi: 'मृदा स्वास्थ्य सूचकांक', te: 'నేల ఆరోగ్య సూచిక', kn: 'ಮಣ್ಣಿನ ಆರೋಗ್ಯ ಸೂಚ್ಯಾಂಕ', mr: 'माती आरोग्य निर्देशांक' },
+    'coordinator_synthesis': { en: 'Central AI Coordinator Synthesis', hi: 'केंद्रीय एआई समन्वयक संश्लेषण', te: 'కేంద్ర AI సమన్వయకర్త విశ్లేషణ', kn: 'ಕೇಂದ್ರೀಯ AI ಸಮನ್ವಯಕ ಸಂಶ್ಲೇಷಣೆ', mr: 'केंद्रीय AI समन्वयक संश्लेषण' },
+};
+
+export function t(key: string, lang: Language = 'en', vars?: Record<string, string>): string {
+    const entry = translations[key];
+    if (!entry) return key;
+    let text = entry[lang] || entry.en;
+    if (vars) {
+        Object.entries(vars).forEach(([k, v]) => {
+            text = text.split(`{${k}}`).join(v);
+        });
+    }
+    return text;
+}
+
+export type { Language };
